@@ -48,7 +48,7 @@ function createSchema(type) {
   });
 }
 
-describe('GraphQLJSON', () => {
+describe('GraphQLjson', () => {
   let schema;
 
   beforeEach(() => {
@@ -76,7 +76,7 @@ describe('GraphQLJSON', () => {
       graphql(
         schema,
         /* GraphQL */ `
-          query($arg: JSON!) {
+          query($arg: json!) {
             value(arg: $arg)
           }
         `,
@@ -165,14 +165,14 @@ describe('GraphQLJSON', () => {
         expect(data).toBeUndefined();
         expect(errors).toMatchInlineSnapshot(`
           Array [
-            [GraphQLError: Expected value of type "JSON", found INVALID; JSON cannot represent value: INVALID],
+            [GraphQLError: Expected value of type "json", found INVALID; json cannot represent value: INVALID],
           ]
         `);
       }));
   });
 });
 
-describe('GraphQLJSONObject', () => {
+describe('GraphQLjsonb', () => {
   let schema;
 
   beforeEach(() => {
@@ -207,7 +207,7 @@ describe('GraphQLJSONObject', () => {
         expect(data.rootValue).toBeNull();
         expect(errors).toMatchInlineSnapshot(`
           Array [
-            [GraphQLError: JSONObject cannot represent non-object value: foo],
+            [GraphQLError: jsonb cannot represent non-object value: foo],
           ]
         `);
       }));
@@ -225,7 +225,7 @@ describe('GraphQLJSONObject', () => {
         expect(data.rootValue).toBeNull();
         expect(errors).toMatchInlineSnapshot(`
           Array [
-            [GraphQLError: JSONObject cannot represent non-object value: ],
+            [GraphQLError: jsonb cannot represent non-object value: ],
           ]
         `);
       }));
@@ -236,7 +236,7 @@ describe('GraphQLJSONObject', () => {
       graphql(
         schema,
         /* GraphQL */ `
-          query($arg: JSONObject!) {
+          query($arg: jsonb!) {
             value(arg: $arg)
           }
         `,
@@ -254,7 +254,7 @@ describe('GraphQLJSONObject', () => {
       graphql(
         schema,
         /* GraphQL */ `
-          query($arg: JSONObject!) {
+          query($arg: jsonb!) {
             value(arg: $arg)
           }
         `,
@@ -267,7 +267,7 @@ describe('GraphQLJSONObject', () => {
         expect(data).toBeUndefined();
         expect(errors).toMatchInlineSnapshot(`
           Array [
-            [GraphQLError: Variable "$arg" got invalid value "foo"; Expected type "JSONObject". JSONObject cannot represent non-object value: foo],
+            [GraphQLError: Variable "$arg" got invalid value "foo"; Expected type "jsonb". jsonb cannot represent non-object value: foo],
           ]
         `);
       }));
@@ -276,7 +276,7 @@ describe('GraphQLJSONObject', () => {
       graphql(
         schema,
         /* GraphQL */ `
-          query($arg: JSONObject!) {
+          query($arg: jsonb!) {
             value(arg: $arg)
           }
         `,
@@ -289,7 +289,7 @@ describe('GraphQLJSONObject', () => {
         expect(data).toBeUndefined();
         expect(errors).toMatchInlineSnapshot(`
           Array [
-            [GraphQLError: Variable "$arg" got invalid value []; Expected type "JSONObject". JSONObject cannot represent non-object value: ],
+            [GraphQLError: Variable "$arg" got invalid value []; Expected type "jsonb". jsonb cannot represent non-object value: ],
           ]
         `);
       }));
@@ -339,7 +339,7 @@ describe('GraphQLJSONObject', () => {
         expect(data).toBeUndefined();
         expect(errors).toMatchInlineSnapshot(`
           Array [
-            [GraphQLError: Expected value of type "JSONObject", found "foo"; JSONObject cannot represent non-object value: "foo"],
+            [GraphQLError: Expected value of type "jsonb", found "foo"; jsonb cannot represent non-object value: "foo"],
           ]
         `);
       }));
@@ -356,7 +356,7 @@ describe('GraphQLJSONObject', () => {
         expect(data).toBeUndefined();
         expect(errors).toMatchInlineSnapshot(`
           Array [
-            [GraphQLError: Expected value of type "JSONObject", found []; JSONObject cannot represent non-object value: []],
+            [GraphQLError: Expected value of type "jsonb", found []; jsonb cannot represent non-object value: []],
           ]
         `);
       }));

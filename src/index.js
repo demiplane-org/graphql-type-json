@@ -7,9 +7,7 @@ function identity(value) {
 
 function ensureObject(value) {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
-    throw new TypeError(
-      `JSONObject cannot represent non-object value: ${value}`,
-    );
+    throw new TypeError(`jsonb cannot represent non-object value: ${value}`);
   }
 
   return value;
@@ -49,22 +47,22 @@ function parseLiteral(typeName, ast, variables) {
 // This named export is intended for users of CommonJS. Users of ES modules
 //  should instead use the default export.
 export const GraphQLJSON = new GraphQLScalarType({
-  name: 'JSON',
+  name: 'json',
   description:
-    'The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).',
+    'The `json` scalar type represents json values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).',
   specifiedByUrl:
     'http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf',
   serialize: identity,
   parseValue: identity,
-  parseLiteral: (ast, variables) => parseLiteral('JSON', ast, variables),
+  parseLiteral: (ast, variables) => parseLiteral('json', ast, variables),
 });
 
 export default GraphQLJSON;
 
 export const GraphQLJSONObject = new GraphQLScalarType({
-  name: 'JSONObject',
+  name: 'jsonb',
   description:
-    'The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).',
+    'The `jsonb` scalar type represents jsonb objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).',
   specifiedByUrl:
     'http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf',
   serialize: ensureObject,
@@ -72,10 +70,10 @@ export const GraphQLJSONObject = new GraphQLScalarType({
   parseLiteral: (ast, variables) => {
     if (ast.kind !== Kind.OBJECT) {
       throw new TypeError(
-        `JSONObject cannot represent non-object value: ${print(ast)}`,
+        `jsonb cannot represent non-object value: ${print(ast)}`,
       );
     }
 
-    return parseObject('JSONObject', ast, variables);
+    return parseObject('jsonb', ast, variables);
   },
 });
